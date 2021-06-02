@@ -1,8 +1,12 @@
 #include <SDL.h>
 #include <stdio.h>
 
+
+bool Quit = false;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+
+SDL_Event e; //EVENT DECLARATION
 
 SDL_Window* gwindow = NULL;//NA
 
@@ -11,6 +15,7 @@ SDL_Surface* gscreensurface = NULL;//NA
 SDL_Surface* Mario = NULL;
 
 bool init() {
+
 	//INIT FLag
 	bool success = true;
 
@@ -73,11 +78,21 @@ int main(int argc, char* args[]) {
 		}
 		else
 		{
-			SDL_BlitSurface(Mario, NULL, gscreensurface, NULL);
+			while (!Quit)
+			{
+				while (SDL_PollEvent(&e) != 0)
+				{
+					if (e.type == SDL_QUIT)
+					{
+						Quit = true;
+					}
+				}
 
-			SDL_UpdateWindowSurface(gwindow);
+				SDL_BlitSurface(Mario, NULL, gscreensurface, NULL);
 
-			SDL_Delay(2000);
+				SDL_UpdateWindowSurface(gwindow);
+			}
+
 		}
 	}
 
