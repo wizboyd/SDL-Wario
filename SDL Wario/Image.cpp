@@ -68,3 +68,68 @@ bool load_media(SDL_Surface* Keypresssurface[], SDL_Surface* surface) {
 
 	return success;
 }
+
+bool load_media(SDL_Texture* Keypresssurface[], SDL_Texture* Texture, SDL_Renderer* renderer) {
+	bool success = true;
+
+	Keypresssurface[ANY_KEY] = loadtexture("Mario_staffordshire/Mario.png", renderer);
+	if (Keypresssurface == NULL)
+	{
+		printf("failed to load the default Image SDL Error: %s\n", IMG_GetError());
+		success = false;
+	}
+	//====================
+	Keypresssurface[UP_ARROW] = loadtexture("Mario_staffordshire/UP.bmp", renderer);
+	if (Keypresssurface == NULL)
+	{
+		printf("failed to load the up Image SDL Error: %s\n", IMG_GetError());
+		success = false;
+	}
+
+	//=============================
+	Keypresssurface[DOWN_ARROW] = loadtexture("Mario_staffordshire/DOWN.bmp", renderer);
+	if (Keypresssurface == NULL)
+	{
+		printf("failed to load the Down Image SDL Error: %s\n", IMG_GetError());
+		success = false;
+	}
+
+	//===========================================
+	Keypresssurface[LEFT_ARROW] = loadtexture("Mario_staffordshire/LEFT.bmp", renderer);
+	if (Keypresssurface == NULL)
+	{
+		printf("failed to load the left Image SDL Error: %s\n", IMG_GetError());
+		success = false;
+	}
+
+	//========================================
+	Keypresssurface[RIGHT_ARROW] = loadtexture("Mario_staffordshire/Right.bmp", renderer);
+	if (Keypresssurface == NULL)
+	{
+		printf("failed to load the Right Image SDL Error: %s\n", IMG_GetError());
+		success = false;
+	}
+
+	return success;
+}
+
+SDL_Texture* loadtexture(std::string path, SDL_Renderer* renderer) {
+	//final texture
+	SDL_Texture* newtexture = NULL;
+
+	SDL_Surface* Loadedsurface = IMG_Load(path.c_str());
+	if (Loadedsurface == NULL)
+	{
+		printf("Could not load Surface! SDL_Image error!: %s\n", IMG_GetError());
+	}
+	else
+	{
+		//create texture from surface
+		newtexture = SDL_CreateTextureFromSurface(renderer, Loadedsurface);
+		if (newtexture == NULL) {
+			printf("Texture could not be created from %s SDL ERROR!: %s", path.c_str(), SDL_GetError());
+		}
+		SDL_FreeSurface(Loadedsurface);
+	}
+	return newtexture;
+}

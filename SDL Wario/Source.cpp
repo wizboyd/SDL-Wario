@@ -9,15 +9,19 @@ const int SCREEN_HEIGHT = 480;
 
 SDL_Event e; //EVENT DECLARATION
 
+SDL_Texture* gTexture = NULL;
+
+SDL_Renderer* grenderer = NULL;
+
 SDL_Window* gwindow = NULL;//NA
 
-SDL_Surface* gscreensurface = NULL;//NA
 
 //SDL_Surface* Mario = NULL;
 
 SDL_Surface* Keypresssurface[TOTAL];
+SDL_Texture* TexturepressSurface[TOTAL];
 
-SDL_Surface* CurrentImageDispaly = NULL;
+SDL_Texture* CurrentImageDispaly = NULL;
 
 
 bool init() {
@@ -37,20 +41,30 @@ bool init() {
 		if (gwindow == NULL)
 		{
 			printf("window Could not be created! SDL_ERROR: %s\n", SDL_GetError());
+			success = false;
 		}
 		else
 		{
-			//Initialize PNG loading
-			int imgFlags = IMG_INIT_PNG;
-			if (!(IMG_Init(imgFlags) & imgFlags))
+			//create renderer
+			grenderer = SDL_CreateRenderer(gwindow, -1, SDL_RENDERER_ACCELERATED);
+			if (grenderer == NULL)
 			{
-				printf("SDL Image could not be INITIALIZED! SDL_ERROR: %s\n", IMG_GetError());
+				printf("Renderer Could not be created! SDL Error %s\n", SDL_GetError());
 				success = false;
 			}
 			else
 			{
-				gscreensurface = SDL_GetWindowSurface(gwindow);
+				SDL_SetRenderDrawColor(grenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if (!(IMG_Init(imgFlags) & imgFlags))
+				{
+					printf("SDL Image could not be INITIALIZED! SDL_ERROR: %s\n", IMG_GetError());
+					success = false;
+				}
 			}
+			
 			
 		}
 	}
@@ -64,9 +78,15 @@ void close()
 	//SDL_FreeSurface(Mario);
 	//Mario = NULL;
 
+	SDL_DestroyTexture(gTexture);
+	gTexture = NULL;
+
 	SDL_DestroyWindow(gwindow);
 	gwindow = NULL;
+	SDL_DestroyRenderer(grenderer);
+	grenderer = NULL;
 
+	IMG_Quit();
 	SDL_Quit();
 }
 
@@ -79,13 +99,13 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media(Keypresssurface, gscreensurface))
+		if (!load_media(TexturepressSurface, gTexture, grenderer))
 		{
 			printf("Failed to load media!\n");
 		}
 		else
 		{
-			CurrentImageDispaly = Keypresssurface[ANY_KEY];
+			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 				while (!Quit)
 				{
 					while (SDL_PollEvent(&e) != 0)
@@ -99,23 +119,23 @@ int main(int argc, char* args[]) {
 							switch (e.key.keysym.sym)
 							{
 							default:
-								CurrentImageDispaly = Keypresssurface[ANY_KEY];
+								CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 								break;
 
 							case SDLK_UP:
-								CurrentImageDispaly = Keypresssurface[UP_ARROW];
+								CurrentImageDispaly = TexturepressSurface[UP_ARROW];
 								break;
 
 							case SDLK_DOWN:
-								CurrentImageDispaly = Keypresssurface[DOWN_ARROW];
+								CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
 								break;
 
 							case SDLK_RIGHT:
-								CurrentImageDispaly = Keypresssurface[RIGHT_ARROW];
+								CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
 								break;
 
 							case SDLK_LEFT:
-								CurrentImageDispaly = Keypresssurface[LEFT_ARROW];
+								CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
 								break;
 							}
 						}
@@ -128,9 +148,11 @@ int main(int argc, char* args[]) {
 					stretchrect.w = SCREEN_WIDTH;
 					stretchrect.h = SCREEN_HEIGHT;
 
-					SDL_BlitScaled(CurrentImageDispaly, NULL, gscreensurface, &stretchrect);
+					SDL_RenderClear(grenderer);
 
-					SDL_UpdateWindowSurface(gwindow);
+					SDL_RenderCopy(grenderer, CurrentImageDispaly, NULL, NULL);
+
+					SDL_RenderPresent(grenderer);
 				}
 
 		}
