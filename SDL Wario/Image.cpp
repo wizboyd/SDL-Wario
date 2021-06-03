@@ -5,12 +5,12 @@
 
 
 SDL_Surface* LoadSurface(std::string path, SDL_Surface* gscreensurface) {
-	SDL_Surface* loadedSurface = SDL_LoadBMP(path.c_str());
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 
 	SDL_Surface* optimizedsurface = NULL;
 	if (loadedSurface == NULL)
 	{
-		printf("Could not load media %s! SDL ERROR: %s\n", path.c_str(), SDL_GetError());
+		printf("Could not load media %s! SDL ERROR: %s\n", path.c_str(), IMG_GetError());
 	}
 	else
 	{
@@ -28,7 +28,7 @@ SDL_Surface* LoadSurface(std::string path, SDL_Surface* gscreensurface) {
 bool load_media(SDL_Surface* Keypresssurface[], SDL_Surface* surface) {
 	bool success = true;
 
-	Keypresssurface[ANY_KEY] = LoadSurface("Mario_staffordshire/test.bmp", surface);
+	Keypresssurface[ANY_KEY] = LoadSurface("Mario_staffordshire/Mario.png", surface);
 	if (Keypresssurface == NULL)
 	{
 		printf("failed to load the default Image SDL Error: %s\n", SDL_GetError());

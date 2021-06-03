@@ -40,7 +40,18 @@ bool init() {
 		}
 		else
 		{
-			gscreensurface = SDL_GetWindowSurface(gwindow);
+			//Initialize PNG loading
+			int imgFlags = IMG_INIT_PNG;
+			if (!(IMG_Init(imgFlags) & imgFlags))
+			{
+				printf("SDL Image could not be INITIALIZED! SDL_ERROR: %s\n", IMG_GetError());
+				success = false;
+			}
+			else
+			{
+				gscreensurface = SDL_GetWindowSurface(gwindow);
+			}
+			
 		}
 	}
 	return success;
