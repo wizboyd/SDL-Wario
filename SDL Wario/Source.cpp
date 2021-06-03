@@ -13,7 +13,7 @@ SDL_Window* gwindow = NULL;//NA
 
 SDL_Surface* gscreensurface = NULL;//NA
 
-SDL_Surface* Mario = NULL;
+//SDL_Surface* Mario = NULL;
 
 SDL_Surface* Keypresssurface[TOTAL];
 
@@ -50,8 +50,8 @@ bool init() {
 
 void close()
 {
-	SDL_FreeSurface(Mario);
-	Mario = NULL;
+	//SDL_FreeSurface(Mario);
+	//Mario = NULL;
 
 	SDL_DestroyWindow(gwindow);
 	gwindow = NULL;
@@ -68,7 +68,7 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media(Keypresssurface))
+		if (!load_media(Keypresssurface, gscreensurface))
 		{
 			printf("Failed to load media!\n");
 		}
@@ -110,7 +110,14 @@ int main(int argc, char* args[]) {
 						}
 					}
 
-					SDL_BlitSurface(CurrentImageDispaly, NULL, gscreensurface, NULL);
+					SDL_Rect stretchrect;
+
+					stretchrect.x = 0;
+					stretchrect.y = 0;
+					stretchrect.w = SCREEN_WIDTH;
+					stretchrect.h = SCREEN_HEIGHT;
+
+					SDL_BlitScaled(CurrentImageDispaly, NULL, gscreensurface, &stretchrect);
 
 					SDL_UpdateWindowSurface(gwindow);
 				}
