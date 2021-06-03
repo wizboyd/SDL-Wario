@@ -1,16 +1,7 @@
-#include <SDL.h>
+#include <Image.h>
 #include <stdio.h>
-#include <string>
+#include <Event.h>
 
-enum KeyPresses
-{
-	ANY_KEY,
-	UP_ARROW,
-	DOWN_ARROW,
-	LEFT_ARROW,
-	RIGHT_ARROW,
-	TOTAL
-};
 
 bool Quit = false;
 const int SCREEN_WIDTH = 640;
@@ -28,15 +19,6 @@ SDL_Surface* Keypresssurface[TOTAL];
 
 SDL_Surface* CurrentImageDispaly = NULL;
 
-SDL_Surface* LoadSurface(std::string path){
-	SDL_Surface* loadedSurface = SDL_LoadBMP(path.c_str());
-
-	if (loadedSurface == NULL)
-	{
-		printf("Could not load media %s! SDL ERROR: %s\n", path.c_str(), SDL_GetError());
-	}
-	return loadedSurface;
-}
 
 bool init() {
 
@@ -64,49 +46,7 @@ bool init() {
 	return success;
 }
 
-bool load_media() {
-	bool success = true;
 
-	Keypresssurface[ANY_KEY] = LoadSurface("Mario_staffordshire/test.bmp");
-	if (Keypresssurface == NULL)
-	{
-		printf("failed to load the default Image SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-	//====================
-	Keypresssurface[UP_ARROW] = LoadSurface("Mario_staffordshire/UP.bmp");
-	if (Keypresssurface == NULL)
-	{
-		printf("failed to load the up Image SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-
-	//=============================
-	Keypresssurface[DOWN_ARROW] = LoadSurface("Mario_staffordshire/DOWN.bmp");
-	if (Keypresssurface == NULL)
-	{
-		printf("failed to load the Down Image SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-
-	//===========================================
-	Keypresssurface[LEFT_ARROW] = LoadSurface("Mario_staffordshire/LEFT.bmp");
-	if (Keypresssurface == NULL)
-	{
-		printf("failed to load the left Image SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-
-	//========================================
-	Keypresssurface[RIGHT_ARROW] = LoadSurface("Mario_staffordshire/Right.bmp");
-	if (Keypresssurface == NULL)
-	{
-		printf("failed to load the Right Image SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-
-	return success;
-}
 
 void close()
 {
@@ -128,52 +68,52 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media())
+		if (!load_media(Keypresssurface))
 		{
 			printf("Failed to load media!\n");
 		}
 		else
 		{
 			CurrentImageDispaly = Keypresssurface[ANY_KEY];
-			while (!Quit)
-			{
-				while (SDL_PollEvent(&e) != 0)
+				while (!Quit)
 				{
-					if (e.type == SDL_QUIT)
+					while (SDL_PollEvent(&e) != 0)
 					{
-						Quit = true;
-					}
-					else if(e.type == SDL_KEYDOWN)// virtual key code
-					{
-						switch (e.key.keysym.sym)
+						if (e.type == SDL_QUIT)
 						{
-						default:
-							CurrentImageDispaly = Keypresssurface[ANY_KEY];
-							break;
+							Quit = true;
+						}
+						else if (e.type == SDL_KEYDOWN)// virtual key code
+						{
+							switch (e.key.keysym.sym)
+							{
+							default:
+								CurrentImageDispaly = Keypresssurface[ANY_KEY];
+								break;
 
-						case SDLK_UP:
-							CurrentImageDispaly = Keypresssurface[UP_ARROW];
-							break;
+							case SDLK_UP:
+								CurrentImageDispaly = Keypresssurface[UP_ARROW];
+								break;
 
-						case SDLK_DOWN:
-							CurrentImageDispaly = Keypresssurface[DOWN_ARROW];
-							break;
+							case SDLK_DOWN:
+								CurrentImageDispaly = Keypresssurface[DOWN_ARROW];
+								break;
 
-						case SDLK_RIGHT:
-							CurrentImageDispaly = Keypresssurface[RIGHT_ARROW];
-							break;
+							case SDLK_RIGHT:
+								CurrentImageDispaly = Keypresssurface[RIGHT_ARROW];
+								break;
 
-						case SDLK_LEFT:
-							CurrentImageDispaly = Keypresssurface[LEFT_ARROW];
-							break;
+							case SDLK_LEFT:
+								CurrentImageDispaly = Keypresssurface[LEFT_ARROW];
+								break;
+							}
 						}
 					}
+
+					SDL_BlitSurface(CurrentImageDispaly, NULL, gscreensurface, NULL);
+
+					SDL_UpdateWindowSurface(gwindow);
 				}
-
-				SDL_BlitSurface(CurrentImageDispaly, NULL, gscreensurface, NULL);
-
-				SDL_UpdateWindowSurface(gwindow);
-			}
 
 		}
 	}
