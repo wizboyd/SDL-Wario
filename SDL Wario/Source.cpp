@@ -15,6 +15,10 @@ SDL_Renderer* grenderer = NULL;
 
 SDL_Window* gwindow = NULL;//NA
 
+//scene textures
+Ltexure Ftexture;
+Ltexure Backtexture;
+
 
 //SDL_Surface* Mario = NULL;
 
@@ -79,6 +83,9 @@ void close()
 	//SDL_FreeSurface(Mario);
 	//Mario = NULL;
 
+	Backtexture.free();
+	Ftexture.free();
+
 	SDL_DestroyTexture(gTexture);
 	gTexture = NULL;
 
@@ -100,18 +107,19 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media(TexturepressSurface, gTexture, grenderer))
+		if (!load_media(grenderer,Backtexture,"Mario_staffordshire/NPC2.png"))
 		{
 			printf("Failed to load media!\n");
 		}
-		else
+		else if (!load_media(grenderer, Ftexture, "Mario_staffordshire/NPC1.png")) {
+			printf("Failed to load media!\n");
+		}
+		else 
 		{
 			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 			//drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
 				while (!Quit)
 				{
-					setviewport(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, grenderer, CurrentImageDispaly);
-					setviewport(0, SCREEN_HEIGHT / 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, grenderer, CurrentImageDispaly);
 					while (SDL_PollEvent(&e) != 0)
 					{
 						if (e.type == SDL_QUIT)
@@ -157,8 +165,13 @@ int main(int argc, char* args[]) {
 					SDL_RenderCopy(grenderer, CurrentImageDispaly, NULL, NULL);
 
 					SDL_RenderPresent(grenderer);*/
+					SDL_SetRenderDrawColor(grenderer, 0, 0xFF, 0xFF, 0xFF);
+					SDL_RenderClear(grenderer);
 
-					//SDL_RenderClear(grenderer);
+					Backtexture.render(0, 0, grenderer);
+					Ftexture.render(240, 190, grenderer);
+
+
 					SDL_RenderPresent(grenderer);
 				}
 

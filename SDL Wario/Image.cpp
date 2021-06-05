@@ -119,6 +119,17 @@ bool load_media() {
 	return success;
 }
 
+bool load_media(SDL_Renderer* renderer, Ltexure &texture, std::string path) {
+	bool success = true;
+	if (!texture.loadfromfile(path.c_str(), renderer))
+	{
+		printf("Failed to load image from file %s SDL_IMG error!: %s\n", path.c_str(), IMG_GetError());
+		success = false;
+	}
+	return success;
+
+}
+
 void drawrectangle(int Xpos, int Ypos, int width, int height, int color, SDL_Renderer* renderer, bool fillin) {
 	SDL_Rect fillrect = { Xpos,Ypos,width / 4,height / 4 };
 	SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);

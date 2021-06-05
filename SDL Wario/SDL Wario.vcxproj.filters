@@ -24,12 +24,18 @@
     <ClCompile Include="Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Colors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Event.h">
+    <ClInclude Include="Personal_inlcude\Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Personal_inlcude\Image.h">
+    <ClInclude Include="Personal_inlcude\Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
