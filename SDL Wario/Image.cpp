@@ -134,6 +134,17 @@ void drawrectangle(int Xpos, int Ypos, int width, int height, int color, SDL_Ren
 	SDL_RenderPresent(renderer);
 }
 
+void setviewport(int Xpos, int Ypos, int width, int height, SDL_Renderer* renderer, SDL_Texture* texture) {
+
+	SDL_Rect Viewport = { Xpos, Ypos, width, height };
+	SDL_RenderSetViewport(renderer, &Viewport);
+	if (texture != NULL)
+	{
+		SDL_RenderCopy(renderer, texture, NULL, NULL);
+	}
+
+}
+
 SDL_Texture* loadtexture(std::string path, SDL_Renderer* renderer) {
 	//final texture
 	SDL_Texture* newtexture = NULL;

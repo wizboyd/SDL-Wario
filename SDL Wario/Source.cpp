@@ -100,47 +100,49 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media())
+		if (!load_media(TexturepressSurface, gTexture, grenderer))
 		{
 			printf("Failed to load media!\n");
 		}
 		else
 		{
-			//CurrentImageDispaly = TexturepressSurface[ANY_KEY];
-			drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
+			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
+			//drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
 				while (!Quit)
 				{
+					setviewport(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, grenderer, CurrentImageDispaly);
+					setviewport(0, SCREEN_HEIGHT / 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, grenderer, CurrentImageDispaly);
 					while (SDL_PollEvent(&e) != 0)
 					{
 						if (e.type == SDL_QUIT)
 						{
 							Quit = true;
 						}
-						//else if (e.type == SDL_KEYDOWN)// virtual key code
-						//{
-						//	switch (e.key.keysym.sym)
-						//	{
-						//	default:
-						//		CurrentImageDispaly = TexturepressSurface[ANY_KEY];
-						//		break;
+						else if (e.type == SDL_KEYDOWN)// virtual key code
+						{
+							switch (e.key.keysym.sym)
+							{
+							default:
+								CurrentImageDispaly = TexturepressSurface[ANY_KEY];
+								break;
 
-						//	case SDLK_UP:
-						//		CurrentImageDispaly = TexturepressSurface[UP_ARROW];
-						//		break;
+							case SDLK_UP:
+								CurrentImageDispaly = TexturepressSurface[UP_ARROW];
+								break;
 
-						//	case SDLK_DOWN:
-						//		CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
-						//		break;
+							case SDLK_DOWN:
+								CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
+								break;
 
-						//	case SDLK_RIGHT:
-						//		CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
-						//		break;
+							case SDLK_RIGHT:
+								CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
+								break;
 
-						//	case SDLK_LEFT:
-						//		CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
-						//		break;
-						//	}
-						//}
+							case SDLK_LEFT:
+								CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
+								break;
+							}
+						}
 					}
 
 					/*SDL_Rect stretchrect;
@@ -156,7 +158,8 @@ int main(int argc, char* args[]) {
 
 					SDL_RenderPresent(grenderer);*/
 
-					SDL_RenderClear(grenderer);
+					//SDL_RenderClear(grenderer);
+					SDL_RenderPresent(grenderer);
 				}
 
 		}
