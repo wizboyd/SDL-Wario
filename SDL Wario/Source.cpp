@@ -63,6 +63,7 @@ bool init() {
 					printf("SDL Image could not be INITIALIZED! SDL_ERROR: %s\n", IMG_GetError());
 					success = false;
 				}
+
 			}
 			
 			
@@ -99,13 +100,14 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media(TexturepressSurface, gTexture, grenderer))
+		if (!load_media())
 		{
 			printf("Failed to load media!\n");
 		}
 		else
 		{
-			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
+			//CurrentImageDispaly = TexturepressSurface[ANY_KEY];
+			drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
 				while (!Quit)
 				{
 					while (SDL_PollEvent(&e) != 0)
@@ -114,34 +116,34 @@ int main(int argc, char* args[]) {
 						{
 							Quit = true;
 						}
-						else if (e.type == SDL_KEYDOWN)// virtual key code
-						{
-							switch (e.key.keysym.sym)
-							{
-							default:
-								CurrentImageDispaly = TexturepressSurface[ANY_KEY];
-								break;
+						//else if (e.type == SDL_KEYDOWN)// virtual key code
+						//{
+						//	switch (e.key.keysym.sym)
+						//	{
+						//	default:
+						//		CurrentImageDispaly = TexturepressSurface[ANY_KEY];
+						//		break;
 
-							case SDLK_UP:
-								CurrentImageDispaly = TexturepressSurface[UP_ARROW];
-								break;
+						//	case SDLK_UP:
+						//		CurrentImageDispaly = TexturepressSurface[UP_ARROW];
+						//		break;
 
-							case SDLK_DOWN:
-								CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
-								break;
+						//	case SDLK_DOWN:
+						//		CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
+						//		break;
 
-							case SDLK_RIGHT:
-								CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
-								break;
+						//	case SDLK_RIGHT:
+						//		CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
+						//		break;
 
-							case SDLK_LEFT:
-								CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
-								break;
-							}
-						}
+						//	case SDLK_LEFT:
+						//		CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
+						//		break;
+						//	}
+						//}
 					}
 
-					SDL_Rect stretchrect;
+					/*SDL_Rect stretchrect;
 
 					stretchrect.x = 0;
 					stretchrect.y = 0;
@@ -152,7 +154,9 @@ int main(int argc, char* args[]) {
 
 					SDL_RenderCopy(grenderer, CurrentImageDispaly, NULL, NULL);
 
-					SDL_RenderPresent(grenderer);
+					SDL_RenderPresent(grenderer);*/
+
+					SDL_RenderClear(grenderer);
 				}
 
 		}

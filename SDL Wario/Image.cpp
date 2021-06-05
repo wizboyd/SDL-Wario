@@ -113,6 +113,27 @@ bool load_media(SDL_Texture* Keypresssurface[], SDL_Texture* Texture, SDL_Render
 	return success;
 }
 
+bool load_media() {
+	bool success = true;
+
+	return success;
+}
+
+void drawrectangle(int Xpos, int Ypos, int width, int height, int color, SDL_Renderer* renderer, bool fillin) {
+	SDL_Rect fillrect = { Xpos,Ypos,width / 4,height / 4 };
+	SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);
+	if (fillin == true)
+	{
+		SDL_RenderFillRect(renderer, &fillrect);
+	}
+	else
+	{
+		SDL_RenderDrawRect(renderer, &fillrect);
+	}
+	
+	SDL_RenderPresent(renderer);
+}
+
 SDL_Texture* loadtexture(std::string path, SDL_Renderer* renderer) {
 	//final texture
 	SDL_Texture* newtexture = NULL;
