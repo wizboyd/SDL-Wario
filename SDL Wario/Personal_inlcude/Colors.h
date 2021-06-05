@@ -13,6 +13,8 @@ public:
 
 	void render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip = NULL);
 	void setcolor(Uint8 red, Uint8 green, Uint8 blue);
+	void setalpha(Uint8 aplha);
+	void setblendmode(SDL_BlendMode blending);
 	int getwidth();
 	int getheight();
 

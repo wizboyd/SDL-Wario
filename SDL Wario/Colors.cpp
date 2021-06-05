@@ -75,6 +75,14 @@ void Ltexure::setcolor(Uint8 red, Uint8 green, Uint8 blue) {
 	SDL_SetTextureColorMod(mtexture, red, green, blue);
 }
 
+void Ltexure::setalpha(Uint8 aplha) {
+	SDL_SetTextureAlphaMod(mtexture, aplha);
+}
+
+void Ltexure::setblendmode(SDL_BlendMode blending) {
+	SDL_SetTextureBlendMode(mtexture, blending);
+}
+
 int Ltexure::getwidth() { return width; }
 int Ltexure::getheight() { return height;}
 

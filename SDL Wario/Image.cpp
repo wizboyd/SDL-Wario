@@ -128,6 +128,7 @@ bool load_media(SDL_Renderer* renderer, Ltexure &texture, std::string path) {
 	}
 	else
 	{
+		texture.setblendmode(SDL_BLENDMODE_BLEND);
 		int increment = 0;
 		for (int i = 0; i < 4; i++)
 		{

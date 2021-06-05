@@ -121,6 +121,7 @@ int main(int argc, char* args[]) {
 			Uint8 red = 255;
 			Uint8 green = 255;
 			Uint8 blue = 255;
+			Uint8 alpha = 255;
 				while (!Quit)
 				{
 					while (SDL_PollEvent(&e) != 0)
@@ -157,6 +158,14 @@ int main(int argc, char* args[]) {
 								red -= 32;
 								blue -= 32;
 								green -= 32;
+								if (alpha < 0)
+								{
+									alpha = 0;
+								}
+								else
+								{
+									alpha -= 32;
+								}
 								break;
 							}
 						}
@@ -178,6 +187,7 @@ int main(int argc, char* args[]) {
 					SDL_RenderClear(grenderer);
 
 					Backtexture.setcolor(red, green, blue);
+					Backtexture.setalpha(alpha);
 					Backtexture.render(0, 0, grenderer, &Backtexture.spriteclips[0]);
 					Backtexture.render(SCREEN_WIDTH - Backtexture.spriteclips[1].w, 0, grenderer, &Backtexture.spriteclips[1]);
 					Backtexture.render(0,SCREEN_HEIGHT - Backtexture.spriteclips[2].h, grenderer, &Backtexture.spriteclips[2]);
