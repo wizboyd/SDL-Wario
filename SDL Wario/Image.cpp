@@ -126,6 +126,19 @@ bool load_media(SDL_Renderer* renderer, Ltexure &texture, std::string path) {
 		printf("Failed to load image from file %s SDL_IMG error!: %s\n", path.c_str(), IMG_GetError());
 		success = false;
 	}
+	else
+	{
+		int increment = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			texture.spriteclips[i].x = 0 + increment;
+			texture.spriteclips[i].y = 0 + increment;
+			texture.spriteclips[i].w = 100;
+			texture.spriteclips[i].h = 100;
+			increment += 100;
+
+		}
+	}
 	return success;
 
 }

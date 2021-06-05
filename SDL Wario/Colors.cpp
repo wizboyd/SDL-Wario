@@ -5,6 +5,7 @@ Ltexure::Ltexure() {
 	mtexture = NULL;
 	width = 0;
 	height = 0;
+	spriteclips[4] = {};
 }
 Ltexure::~Ltexure() {
 	//deallocate
@@ -59,10 +60,17 @@ void Ltexure::free() {
 	}
 }
 
-void Ltexure::render(int x, int y, SDL_Renderer* renderer) {
+void Ltexure::render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip) {
 	SDL_Rect renderquad = { x,y,width,height };
-	SDL_RenderCopy(renderer, mtexture, NULL, &renderquad);
+
+	if (clip != NULL)
+	{
+		renderquad.w = clip->w;
+		renderquad.h = clip->h;
+	}
+	SDL_RenderCopy(renderer, mtexture, clip, &renderquad);
 }
+
 
 int Ltexure::getwidth() { return width; }
 int Ltexure::getheight() { return height;}

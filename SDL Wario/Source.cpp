@@ -107,7 +107,7 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (!load_media(grenderer,Backtexture,"Mario_staffordshire/NPC2.png"))
+		if (!load_media(grenderer,Backtexture,"Mario_staffordshire/NES - Mario Bros - General Sprites.png"))
 		{
 			printf("Failed to load media!\n");
 		}
@@ -165,13 +165,13 @@ int main(int argc, char* args[]) {
 					SDL_RenderCopy(grenderer, CurrentImageDispaly, NULL, NULL);
 
 					SDL_RenderPresent(grenderer);*/
-					SDL_SetRenderDrawColor(grenderer, 0, 0xFF, 0xFF, 0xFF);
+					SDL_SetRenderDrawColor(grenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 					SDL_RenderClear(grenderer);
 
-					Backtexture.render(0, 0, grenderer);
-					Ftexture.render(240, 190, grenderer);
-
-
+					Backtexture.render(0, 0, grenderer, &Backtexture.spriteclips[0]);
+					Backtexture.render(SCREEN_WIDTH - Backtexture.spriteclips[1].w, 0, grenderer, &Backtexture.spriteclips[1]);
+					Backtexture.render(0,SCREEN_HEIGHT - Backtexture.spriteclips[2].h, grenderer, &Backtexture.spriteclips[2]);
+					Backtexture.render(SCREEN_WIDTH - Backtexture.spriteclips[3].w, SCREEN_HEIGHT - Backtexture.spriteclips[3].y, grenderer, &Backtexture.spriteclips[3]);
 					SDL_RenderPresent(grenderer);
 				}
 
