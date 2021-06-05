@@ -12,7 +12,7 @@ public:
 	void free();
 
 	void render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip = NULL);
-
+	void setcolor(Uint8 red, Uint8 green, Uint8 blue);
 	int getwidth();
 	int getheight();
 

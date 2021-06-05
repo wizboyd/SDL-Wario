@@ -118,6 +118,9 @@ int main(int argc, char* args[]) {
 		{
 			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 			//drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
+			Uint8 red = 255;
+			Uint8 green = 255;
+			Uint8 blue = 255;
 				while (!Quit)
 				{
 					while (SDL_PollEvent(&e) != 0)
@@ -136,18 +139,24 @@ int main(int argc, char* args[]) {
 
 							case SDLK_UP:
 								CurrentImageDispaly = TexturepressSurface[UP_ARROW];
+								red += 32;
 								break;
 
 							case SDLK_DOWN:
 								CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
+								blue += 32;
 								break;
 
 							case SDLK_RIGHT:
 								CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
+								green += 32;
 								break;
 
 							case SDLK_LEFT:
 								CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
+								red -= 32;
+								blue -= 32;
+								green -= 32;
 								break;
 							}
 						}
@@ -168,6 +177,7 @@ int main(int argc, char* args[]) {
 					SDL_SetRenderDrawColor(grenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 					SDL_RenderClear(grenderer);
 
+					Backtexture.setcolor(red, green, blue);
 					Backtexture.render(0, 0, grenderer, &Backtexture.spriteclips[0]);
 					Backtexture.render(SCREEN_WIDTH - Backtexture.spriteclips[1].w, 0, grenderer, &Backtexture.spriteclips[1]);
 					Backtexture.render(0,SCREEN_HEIGHT - Backtexture.spriteclips[2].h, grenderer, &Backtexture.spriteclips[2]);

@@ -71,6 +71,9 @@ void Ltexure::render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip) {
 	SDL_RenderCopy(renderer, mtexture, clip, &renderquad);
 }
 
+void Ltexure::setcolor(Uint8 red, Uint8 green, Uint8 blue) {
+	SDL_SetTextureColorMod(mtexture, red, green, blue);
+}
 
 int Ltexure::getwidth() { return width; }
 int Ltexure::getheight() { return height;}
