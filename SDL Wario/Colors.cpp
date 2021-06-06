@@ -61,7 +61,7 @@ void Ltexure::free() {
 	}
 }
 
-void Ltexure::render(int x, int y, SDL_Renderer* renderer,double angle /* = 0.0 */, SDL_Rect* clip /* = NULL */, SDL_Point* center /* = NULL */, SDL_RendererFlip flip ) {
+void Ltexure::render(int x, int y, SDL_Renderer* renderer, double angle /* = 0.0 */, SDL_Rect* clip /* = NULL */, SDL_Point* center /* = NULL */, SDL_RendererFlip flip) {
 	SDL_Rect renderquad = { x,y,width,height };
 
 	if (clip != NULL)
@@ -70,6 +70,34 @@ void Ltexure::render(int x, int y, SDL_Renderer* renderer,double angle /* = 0.0 
 		renderquad.h = clip->h;
 	}
 	SDL_RenderCopyEx(renderer, mtexture, clip, &renderquad, angle, center, flip);
+	
+}
+
+bool Ltexure::loadfromrenderedtext(std::string texturetext, SDL_Color textColor, TTF_Font* gfont, SDL_Renderer* renderer) {
+	free();
+
+	SDL_Surface* textsurface = TTF_RenderText_Solid(gfont, texturetext.c_str(), textColor);
+	if (textsurface == NULL)
+	{
+		printf("Unable to render text to surface! SDL_TTF Error: %s", TTF_GetError());
+	}
+	else
+	{
+		mtexture = SDL_CreateTextureFromSurface(renderer, textsurface);
+		if (mtexture == NULL)
+		{
+			printf("unable to create texture from the rendered text! SDL_Error: %s\n", SDL_GetError());
+		}
+		else
+		{
+			width = textsurface->w;
+			height = textsurface->h;
+		}
+
+		SDL_FreeSurface(textsurface);
+
+		return mtexture != NULL;
+	}
 }
 
 void Ltexure::setcolor(Uint8 red, Uint8 green, Uint8 blue) {

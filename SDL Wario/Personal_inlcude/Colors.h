@@ -2,6 +2,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 class Ltexure {
 public:
 	Ltexure();
@@ -17,6 +18,7 @@ public:
 	void setcolor(Uint8 red, Uint8 green, Uint8 blue);
 	void setalpha(Uint8 aplha);
 	void setblendmode(SDL_BlendMode blending);
+	bool loadfromrenderedtext(std::string texturetext, SDL_Color textColor, TTF_Font* gfont, SDL_Renderer* renderer);
 	int getwidth();
 	int getheight();
 

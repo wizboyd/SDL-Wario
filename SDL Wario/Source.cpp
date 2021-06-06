@@ -20,9 +20,12 @@ SDL_Renderer* grenderer = NULL;
 
 SDL_Window* gwindow = NULL;//NA
 
+TTF_Font* gfont = NULL;
+
 //scene textures
 Ltexure Ftexture;
 Ltexure Backtexture;
+Ltexure written;
 
 SDL_RendererFlip fliptype = SDL_FLIP_NONE;
 //SDL_Surface* Mario = NULL;
@@ -73,6 +76,12 @@ bool init() {
 					success = false;
 				}
 
+				if (TTF_Init() == -1)
+				{
+					printf("SDL_TTF could not be Initialized! SDL_ttf Error: %s\n", TTF_GetError());
+					success = false;
+				}
+
 			}
 			
 			
@@ -90,15 +99,18 @@ void close()
 
 	Backtexture.free();
 	Ftexture.free();
+	written.free();
 
 	SDL_DestroyTexture(gTexture);
 	gTexture = NULL;
+	gfont = NULL;
 
 	SDL_DestroyWindow(gwindow);
 	gwindow = NULL;
 	SDL_DestroyRenderer(grenderer);
 	grenderer = NULL;
 
+	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -122,6 +134,10 @@ int main(int argc, char* args[]) {
 		else if (!load_media(grenderer, spritesheet, "Mario_staffordshire/NPC2.png"))
 		{
 			printf("Failed to load media!\n");
+		}
+		else if (!load_media(grenderer,gfont,"Mario_staffordshire/Pacifico.ttf",28, written))
+		{
+			printf("Failed to load media\n");
 		}
 		else {
 			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
@@ -184,6 +200,8 @@ int main(int argc, char* args[]) {
 				int test = frame / 8;
 				int test2 = sizeof(spritesheet.animateclips);
 				spritesheet.render((SCREEN_WIDTH - currentclip->w) / 2, (SCREEN_HEIGHT - currentclip->h) / 2, grenderer, degrees, currentclip, NULL, fliptype);
+
+				written.render(50, 50, grenderer, NULL, NULL, NULL, fliptype);
 
 				/*Backtexture.setcolor(red, green, blue);
 				Backtexture.setalpha(alpha);

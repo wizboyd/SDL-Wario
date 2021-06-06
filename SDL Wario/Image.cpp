@@ -153,6 +153,26 @@ bool load_media(SDL_Renderer* renderer, Ltexure &texture, std::string path) {
 
 }
 
+bool load_media(SDL_Renderer* renderer, TTF_Font* font, std::string path, int fontsize, Ltexure &texture) {
+	bool success = true;
+	
+	font = TTF_OpenFont(path.c_str(), fontsize);
+	if (font == NULL)
+	{
+		printf("Failed to load font! SDL_TTF error: %s\n", TTF_GetError());
+	}
+	else
+	{
+		SDL_Color textColor = { 0,255,0, 255 };
+		if (!texture.loadfromrenderedtext("Gamersrus", textColor,font,renderer))
+		{
+			printf("Failed to render text texture\n");
+			success = false;
+		}
+	}
+	return success;
+}
+
 void drawrectangle(int Xpos, int Ypos, int width, int height, int color, SDL_Renderer* renderer, bool fillin) {
 	SDL_Rect fillrect = { Xpos,Ypos,width / 4,height / 4 };
 	SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);
