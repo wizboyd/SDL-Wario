@@ -6,6 +6,7 @@ Ltexure::Ltexure() {
 	width = 0;
 	height = 0;
 	spriteclips[4] = {};
+	animateclips[2] = {};
 }
 Ltexure::~Ltexure() {
 	//deallocate

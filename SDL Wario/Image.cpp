@@ -129,7 +129,16 @@ bool load_media(SDL_Renderer* renderer, Ltexure &texture, std::string path) {
 	else
 	{
 		texture.setblendmode(SDL_BLENDMODE_BLEND);
-		int increment = 0;
+		texture.animateclips[0].x = 0;
+		texture.animateclips[0].y = 0;
+		texture.animateclips[0].w = 32;
+		texture.animateclips[0].h = 30;
+
+		texture.animateclips[1].x = 0;
+		texture.animateclips[1].y = 32;
+		texture.animateclips[1].w = 32;
+		texture.animateclips[1].h = 32;
+		/*int increment = 0;
 		for (int i = 0; i < 4; i++)
 		{
 			texture.spriteclips[i].x = 0 + increment;
@@ -138,7 +147,7 @@ bool load_media(SDL_Renderer* renderer, Ltexure &texture, std::string path) {
 			texture.spriteclips[i].h = 100;
 			increment += 100;
 
-		}
+		}*/
 	}
 	return success;
 

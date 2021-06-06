@@ -8,6 +8,8 @@ public:
 	~Ltexure();
 	SDL_Rect spriteclips[4];
 	bool loadfromfile(std::string path, SDL_Renderer* rednerer);
+	const int WALKING_ANIMATION_FRAMES = 2;
+	SDL_Rect animateclips[2];
 
 	void free();
 
