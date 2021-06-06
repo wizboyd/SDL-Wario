@@ -13,7 +13,7 @@ public:
 
 	void free();
 
-	void render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip = NULL);
+	void render(int x, int y, SDL_Renderer* renderer,double angle = 0.0, SDL_Rect* clip = NULL, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void setcolor(Uint8 red, Uint8 green, Uint8 blue);
 	void setalpha(Uint8 aplha);
 	void setblendmode(SDL_BlendMode blending);

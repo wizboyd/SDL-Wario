@@ -61,7 +61,7 @@ void Ltexure::free() {
 	}
 }
 
-void Ltexure::render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip) {
+void Ltexure::render(int x, int y, SDL_Renderer* renderer,double angle /* = 0.0 */, SDL_Rect* clip /* = NULL */, SDL_Point* center /* = NULL */, SDL_RendererFlip flip ) {
 	SDL_Rect renderquad = { x,y,width,height };
 
 	if (clip != NULL)
@@ -69,7 +69,7 @@ void Ltexure::render(int x, int y, SDL_Renderer* renderer, SDL_Rect* clip) {
 		renderquad.w = clip->w;
 		renderquad.h = clip->h;
 	}
-	SDL_RenderCopy(renderer, mtexture, clip, &renderquad);
+	SDL_RenderCopyEx(renderer, mtexture, clip, &renderquad, angle, center, flip);
 }
 
 void Ltexure::setcolor(Uint8 red, Uint8 green, Uint8 blue) {

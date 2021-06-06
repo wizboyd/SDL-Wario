@@ -8,6 +8,7 @@ bool Quit = false;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 int frame = 0;
+double degrees = 0;
 
 
 Ltexure spritesheet;
@@ -23,7 +24,7 @@ SDL_Window* gwindow = NULL;//NA
 Ltexure Ftexture;
 Ltexure Backtexture;
 
-
+SDL_RendererFlip fliptype = SDL_FLIP_NONE;
 //SDL_Surface* Mario = NULL;
 
 SDL_Surface* Keypresssurface[TOTAL];
@@ -125,10 +126,6 @@ int main(int argc, char* args[]) {
 		else {
 			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 			//drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
-			Uint8 red = 255;
-			Uint8 green = 255;
-			Uint8 blue = 255;
-			Uint8 alpha = 255;
 			while (!Quit)
 			{
 				while (SDL_PollEvent(&e) != 0)
@@ -147,32 +144,22 @@ int main(int argc, char* args[]) {
 
 						case SDLK_UP:
 							CurrentImageDispaly = TexturepressSurface[UP_ARROW];
-							red += 32;
+							degrees -= 60;
 							break;
 
 						case SDLK_DOWN:
 							CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
-							blue += 32;
+							degrees += 60;
 							break;
 
 						case SDLK_RIGHT:
 							CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
-							green += 32;
+							fliptype = SDL_FLIP_HORIZONTAL;
 							break;
 
 						case SDLK_LEFT:
 							CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
-							red -= 32;
-							blue -= 32;
-							green -= 32;
-							if (alpha < 0)
-							{
-								alpha = 0;
-							}
-							else
-							{
-								alpha -= 32;
-							}
+							fliptype = SDL_FLIP_VERTICAL;
 							break;
 						}
 					}
@@ -196,7 +183,7 @@ int main(int argc, char* args[]) {
 				SDL_Rect* currentclip = &spritesheet.animateclips[frame / 8];
 				int test = frame / 8;
 				int test2 = sizeof(spritesheet.animateclips);
-				spritesheet.render((SCREEN_WIDTH - currentclip->w) / 2, (SCREEN_HEIGHT - currentclip->h) / 2, grenderer, currentclip);
+				spritesheet.render((SCREEN_WIDTH - currentclip->w) / 2, (SCREEN_HEIGHT - currentclip->h) / 2, grenderer, degrees, currentclip, NULL, fliptype);
 
 				/*Backtexture.setcolor(red, green, blue);
 				Backtexture.setalpha(alpha);
