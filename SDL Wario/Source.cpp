@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <Event.h>
 #include <iostream>
+using namespace std;
 
 
 bool Quit = false;
@@ -26,6 +27,8 @@ TTF_Font* gfont = NULL;
 Ltexure Ftexture;
 Ltexure Backtexture;
 Ltexure written;
+Lbuttonsprite L;
+L_Mouse_Button Mbuttons[BUTTON_SPRITE_TOTAL];
 
 SDL_RendererFlip fliptype = SDL_FLIP_NONE;
 //SDL_Surface* Mario = NULL;
@@ -142,79 +145,29 @@ int main(int argc, char* args[]) {
 		else {
 			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 			//drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
+			int frame = 0;
 			while (!Quit)
 			{
+				
 				while (SDL_PollEvent(&e) != 0)
 				{
 					if (e.type == SDL_QUIT)
 					{
 						Quit = true;
 					}
-					else if (e.type == SDL_KEYDOWN)// virtual key code
+
+					for (int i = 0; i < BUTTON_SPRITE_TOTAL; i++)
 					{
-						switch (e.key.keysym.sym)
-						{
-						default:
-							CurrentImageDispaly = TexturepressSurface[ANY_KEY];
-							break;
-
-						case SDLK_UP:
-							CurrentImageDispaly = TexturepressSurface[UP_ARROW];
-							degrees -= 60;
-							break;
-
-						case SDLK_DOWN:
-							CurrentImageDispaly = TexturepressSurface[DOWN_ARROW];
-							degrees += 60;
-							break;
-
-						case SDLK_RIGHT:
-							CurrentImageDispaly = TexturepressSurface[RIGHT_ARROW];
-							fliptype = SDL_FLIP_HORIZONTAL;
-							break;
-
-						case SDLK_LEFT:
-							CurrentImageDispaly = TexturepressSurface[LEFT_ARROW];
-							fliptype = SDL_FLIP_VERTICAL;
-							break;
-						}
+						Mbuttons[i].handleevent(&e);
 					}
 				}
-
-				/*SDL_Rect stretchrect;
-
-				stretchrect.x = 0;
-				stretchrect.y = 0;
-				stretchrect.w = SCREEN_WIDTH;
-				stretchrect.h = SCREEN_HEIGHT;
-
-				SDL_RenderClear(grenderer);
-
-				SDL_RenderCopy(grenderer, CurrentImageDispaly, NULL, NULL);
-
-				SDL_RenderPresent(grenderer);*/
-				SDL_SetRenderDrawColor(grenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-				SDL_RenderClear(grenderer);
-
-				SDL_Rect* currentclip = &spritesheet.animateclips[frame / 8];
-				int test = frame / 8;
-				int test2 = sizeof(spritesheet.animateclips);
-				spritesheet.render((SCREEN_WIDTH - currentclip->w) / 2, (SCREEN_HEIGHT - currentclip->h) / 2, grenderer, degrees, currentclip, NULL, fliptype);
-
-				written.render(50, 50, grenderer, NULL, NULL, NULL, fliptype);
-
-				/*Backtexture.setcolor(red, green, blue);
-				Backtexture.setalpha(alpha);
-				Backtexture.render(0, 0, grenderer, &Backtexture.spriteclips[0]);
-				Backtexture.render(SCREEN_WIDTH - Backtexture.spriteclips[1].w, 0, grenderer, &Backtexture.spriteclips[1]);
-				Backtexture.render(0,SCREEN_HEIGHT - Backtexture.spriteclips[2].h, grenderer, &Backtexture.spriteclips[2]);
-				Backtexture.render(SCREEN_WIDTH - Backtexture.spriteclips[3].w, SCREEN_HEIGHT - Backtexture.spriteclips[3].y, grenderer, &Backtexture.spriteclips[3]);*/
-				SDL_RenderPresent(grenderer);
-				frame++;
-				if ((frame / 8) >= sizeof(spritesheet.animateclips)/sizeof(spritesheet.animateclips[0]))
+				for (int i = 0; i < BUTTON_SPRITE_TOTAL; i++)
 				{
-					frame = 0;
+					Mbuttons[i].render(Backtexture, grenderer);
+					cout << to_string(Mbuttons[i].mCurrentSprite) << endl;
 				}
+
+				SDL_RenderPresent(grenderer);
 			}
 
 		}

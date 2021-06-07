@@ -18,7 +18,10 @@ public:
 	void setcolor(Uint8 red, Uint8 green, Uint8 blue);
 	void setalpha(Uint8 aplha);
 	void setblendmode(SDL_BlendMode blending);
+
+	#if defined(SDL_TTF_MAJOR_VERSION)
 	bool loadfromrenderedtext(std::string texturetext, SDL_Color textColor, TTF_Font* gfont, SDL_Renderer* renderer);
+	#endif
 	int getwidth();
 	int getheight();
 

@@ -72,7 +72,7 @@ void Ltexure::render(int x, int y, SDL_Renderer* renderer, double angle /* = 0.0
 	SDL_RenderCopyEx(renderer, mtexture, clip, &renderquad, angle, center, flip);
 	
 }
-
+#if defined(SDL_TTF_MAJOR_VERSION) 
 bool Ltexure::loadfromrenderedtext(std::string texturetext, SDL_Color textColor, TTF_Font* gfont, SDL_Renderer* renderer) {
 	free();
 
@@ -99,6 +99,7 @@ bool Ltexure::loadfromrenderedtext(std::string texturetext, SDL_Color textColor,
 		return mtexture != NULL;
 	}
 }
+#endif
 
 void Ltexure::setcolor(Uint8 red, Uint8 green, Uint8 blue) {
 	SDL_SetTextureColorMod(mtexture, red, green, blue);

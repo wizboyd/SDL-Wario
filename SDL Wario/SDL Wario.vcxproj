@@ -148,9 +148,11 @@
     <ClCompile Include="Colors.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="L_Mouse_Button.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="L_Mouse_Button.h" />
     <ClInclude Include="Personal_inlcude\Colors.h" />
     <ClInclude Include="Personal_inlcude\Event.h" />
     <ClInclude Include="Personal_inlcude\Image.h" />
