@@ -116,6 +116,20 @@ bool load_media(SDL_Texture* Keypresssurface[], SDL_Texture* Texture, SDL_Render
 bool load_media() {
 	bool success = true;
 
+
+
+	return success;
+}
+
+bool load_media(Mix_Music* &music, std::string path) {
+	bool success = true;
+
+	music = Mix_LoadMUS(path.c_str());
+	if (music == NULL)
+	{
+		printf("Could not load %s for this reason %s\n", path.c_str(), Mix_GetError());
+		success = false;
+	}
 	return success;
 }
 

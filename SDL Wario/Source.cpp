@@ -11,6 +11,11 @@ const int SCREEN_HEIGHT = 480;
 int frame = 0;
 double degrees = 0;
 
+// sound
+Mix_Music* underworldM = NULL;
+Mix_Music* NESMUsic = NULL;
+//=================
+
 
 Ltexure spritesheet;
 SDL_Event e; //EVENT DECLARATION
@@ -45,7 +50,7 @@ bool init() {
 	bool success = true;
 
 	//INIT SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)//check out what a subsystem is??
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)//check out what a subsystem is??
 	{
 		printf("SDL COULD NOT BE INITIALIZED! SDL_ERROR: %s\n", SDL_GetError());
 		success = false;
@@ -84,6 +89,12 @@ bool init() {
 					printf("SDL_TTF could not be Initialized! SDL_ttf Error: %s\n", TTF_GetError());
 					success = false;
 				}
+				if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT,2,2048) < 0)
+				{
+					printf("SDL_MIXER could not be INITIALIZED SDL_MIXER ERROR: %s\n", Mix_GetError());
+					success = false;
+				}
+				
 
 			}
 			
@@ -103,6 +114,11 @@ void close()
 	Backtexture.free();
 	Ftexture.free();
 	written.free();
+
+	Mix_FreeMusic(NESMUsic);
+	Mix_FreeMusic(underworldM);
+	NESMUsic = NULL;
+	underworldM = NULL;
 
 	SDL_DestroyTexture(gTexture);
 	gTexture = NULL;
@@ -142,6 +158,14 @@ int main(int argc, char* args[]) {
 		{
 			printf("Failed to load media\n");
 		}
+		else if (!load_media(NESMUsic, "Mario_staffordshire/Mario.mp3"))
+		{
+			printf("Failed to load media\n");
+		}
+		else if(!load_media(underworldM, "Mario_staffordshire/MarioUnderworld.mp3"))
+		{
+			printf("Failed to load media\n");
+		}
 		else {
 			CurrentImageDispaly = TexturepressSurface[ANY_KEY];
 			//drawrectangle(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, grenderer, false);
@@ -154,6 +178,45 @@ int main(int argc, char* args[]) {
 					if (e.type == SDL_QUIT)
 					{
 						Quit = true;
+					}
+					else if(e.type == SDL_KEYDOWN)
+					{
+						Mix_Music* currentplaying = NULL;
+						switch (e.key.keysym.sym)
+						{
+						default:
+							break;
+
+						case  SDLK_1:
+							Mix_PlayMusic( NESMUsic, 0);
+							currentplaying = NESMUsic;
+							break;
+						case SDLK_2:
+							Mix_PlayMusic(underworldM, 0);
+							currentplaying = underworldM;
+							break;
+						case  SDLK_3:
+							if (Mix_PlayingMusic() == 0)
+							{
+								Mix_PlayMusic(currentplaying, 0);
+							}
+							
+							else
+							{
+								if (Mix_PausedMusic() == 1)
+								{
+									Mix_ResumeMusic();
+								}
+								else
+								{
+									Mix_PauseMusic();
+								}
+								
+							}
+							break;
+						case SDLK_0:
+							Mix_HaltMusic();
+						}
 					}
 
 					for (int i = 0; i < BUTTON_SPRITE_TOTAL; i++)
