@@ -134,6 +134,7 @@ void close()
 	SDL_Quit();
 }
 
+std::vector
 
 int main(int argc, char* args[]) {
 

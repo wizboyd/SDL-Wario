@@ -13,36 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ECS">
+      <UniqueIdentifier>{cdcb0fca-10c3-44ed-ac93-90c0ea0c014b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes">
+      <UniqueIdentifier>{4f915a01-648d-44cd-b759-073dedde10c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="Wario_WIP\Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
+    <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Colors.cpp">
+    <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="L_Mouse_Button.cpp">
+    <ClCompile Include="Tile.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>ECS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Personal_inlcude\Image.h">
+    <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Personal_inlcude\Colors.h">
+    <ClInclude Include="Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Personal_inlcude\Event.h">
+    <ClInclude Include="ObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="L_Mouse_Button.h">
+    <ClInclude Include="Personal_inlcude\Game.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2D.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\Componenet.h">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\ECS.h">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\Entity.h">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\Transform.h">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>ECS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

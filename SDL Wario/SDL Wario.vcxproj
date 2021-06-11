@@ -18,6 +18,31 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Wario_WIP\Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Personal_inlcude\Componenet.h" />
+    <ClInclude Include="Personal_inlcude\ECS.h" />
+    <ClInclude Include="Personal_inlcude\Entity.h" />
+    <ClInclude Include="Personal_inlcude\Game.h" />
+    <ClInclude Include="Personal_inlcude\GameObject.h" />
+    <ClInclude Include="Personal_inlcude\TextureManager.h" />
+    <ClInclude Include="Personal_inlcude\Transform.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Vec2D.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -121,6 +146,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(PROJECTDIR)\Personal_inlcude;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,19 +170,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Colors.cpp" />
-    <ClCompile Include="Event.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="L_Mouse_Button.cpp" />
-    <ClCompile Include="Source.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="L_Mouse_Button.h" />
-    <ClInclude Include="Personal_inlcude\Colors.h" />
-    <ClInclude Include="Personal_inlcude\Event.h" />
-    <ClInclude Include="Personal_inlcude\Image.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
