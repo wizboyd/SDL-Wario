@@ -19,29 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="EntityManager.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="Wario_WIP\Source.cpp" />
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Components.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Personal_inlcude\entt.hpp" />
+    <ClInclude Include="Prefab.h" />
+    <ClInclude Include="QuadWriter.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="SDL_Checkh.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="Personal_inlcude\Componenet.h" />
-    <ClInclude Include="Personal_inlcude\ECS.h" />
-    <ClInclude Include="Personal_inlcude\Entity.h" />
-    <ClInclude Include="Personal_inlcude\Game.h" />
-    <ClInclude Include="Personal_inlcude\GameObject.h" />
-    <ClInclude Include="Personal_inlcude\TextureManager.h" />
-    <ClInclude Include="Personal_inlcude\Transform.h" />
-    <ClInclude Include="Tile.h" />
-    <ClInclude Include="Vec2D.h" />
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

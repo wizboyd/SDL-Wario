@@ -1,90 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Include">
+      <UniqueIdentifier>{53260628-9fef-404d-93e0-ab7745d68698}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{3d615c9d-950c-4a33-89c3-ec4c7cf9cf40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="DataTypes">
+      <UniqueIdentifier>{59af144e-84ec-46f6-8a50-b17eda3c3bc9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ECS">
-      <UniqueIdentifier>{cdcb0fca-10c3-44ed-ac93-90c0ea0c014b}</UniqueIdentifier>
+    <Filter Include="Util">
+      <UniqueIdentifier>{dcd2da3a-195b-4ed3-949f-331d044c08a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes">
-      <UniqueIdentifier>{4f915a01-648d-44cd-b759-073dedde10c8}</UniqueIdentifier>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4c6b7857-fc00-4f91-b3ef-e73db89ea71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="prefabs">
+      <UniqueIdentifier>{ebdaa9de-e8d8-4d64-94a7-824224d4095a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetManager">
+      <UniqueIdentifier>{95152ff2-61d9-44c9-8dc7-72d4141ba322}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Wario_WIP\Source.cpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Personal_inlcude\entt.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTypes.h">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_Checkh.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadWriter.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab.h">
+      <Filter>prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>AssetManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>AssetManager</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>ECS</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2D.h">
-      <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\Componenet.h">
-      <Filter>ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\ECS.h">
-      <Filter>ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\Entity.h">
-      <Filter>ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Personal_inlcude\Transform.h">
-      <Filter>ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>ECS</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
