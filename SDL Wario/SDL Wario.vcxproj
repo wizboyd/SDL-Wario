@@ -19,18 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="Components.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Personal_inlcude\AssetManager.h" />
+    <ClInclude Include="Personal_inlcude\Components.h" />
+    <ClInclude Include="Personal_inlcude\DataTypes.h" />
     <ClInclude Include="Personal_inlcude\entt.hpp" />
+    <ClInclude Include="Personal_inlcude\Game.h" />
+    <ClInclude Include="Personal_inlcude\Scene.h" />
     <ClInclude Include="Prefab.h" />
     <ClInclude Include="QuadWriter.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="DataTypes.h" />
     <ClInclude Include="SDL_Checkh.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Components.cpp" />
+    <ClCompile Include="DataTypes.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Source.cpp" />

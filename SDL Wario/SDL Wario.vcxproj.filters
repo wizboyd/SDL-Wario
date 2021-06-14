@@ -27,20 +27,8 @@
     <ClInclude Include="Personal_inlcude\entt.hpp">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Components.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="DataTypes.h">
-      <Filter>DataTypes</Filter>
-    </ClInclude>
     <ClInclude Include="SDL_Checkh.h">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="QuadWriter.h">
       <Filter>Util</Filter>
@@ -48,8 +36,20 @@
     <ClInclude Include="Prefab.h">
       <Filter>prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="AssetManager.h">
+    <ClInclude Include="Personal_inlcude\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\Components.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\DataTypes.h">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\AssetManager.h">
       <Filter>AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Personal_inlcude\Game.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="AssetManager.cpp">
       <Filter>AssetManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTypes.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Components.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

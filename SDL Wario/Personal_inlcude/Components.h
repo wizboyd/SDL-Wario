@@ -1,6 +1,7 @@
 #pragma once
 #include <DataTypes.h>
 #include <SDL.h>
+#include <vector>
 namespace WarioPrimark {
 
 	struct TransformComponent2D
@@ -75,11 +76,20 @@ namespace WarioPrimark {
 	struct TilemapComponent
 	{
 		TilemapComponent() = default;
+
+		map Map;
+
 	};
 
 	struct TilemapRenderer
 	{
-		TilemapRenderer() = default;
+		TilemapRenderer(SDL_Renderer* render)
+			:mapRenderer(render) {};
+		
+		SDL_Renderer* mapRenderer;
+
+		void DrawTileMap(map Map);
+
 	};
 
 	struct TileMapCollider2D
@@ -90,6 +100,19 @@ namespace WarioPrimark {
 	struct BasicEnemyAI
 	{
 		BasicEnemyAI() = default;
+	};
+
+	struct Grid2d
+	{
+		Grid2d(Vector2D cellsize) {
+			sizecell = cellsize;
+		}
+		Grid2d() {
+			sizecell.Ones();
+		}
+
+		Vector2D sizecell;
+		Vector2D cellgap;
 	};
 
 

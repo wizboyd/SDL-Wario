@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <stdexcept>
+#include <iostream>
 
 namespace WarioPrimark {
 
@@ -13,6 +14,7 @@ namespace WarioPrimark {
 	}
 
 	inline int check(const int code) {
+		std::cout << code << std::endl;
 		if (code < 0)
 		{
 			raise();

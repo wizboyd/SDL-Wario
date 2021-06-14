@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SDL_Checkh.h>
 #include <AssetManager.h>
+#include <Scene.h>
 namespace WarioPrimark {
 
 	Game::Game()
@@ -24,15 +25,23 @@ void Game::run(){
 			WarioPrimark::raise();
 		}
 
-		SDL_Renderer* renderer{SDL_CreateRenderer(window, -1,
+		renderer_global = {SDL_CreateRenderer(window, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 			) };
-		if (renderer == NULL)
+		if (renderer_global == NULL)
 		{
 			WarioPrimark::raise();
 		}
+
+		WarioPrimark::check(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG));
+		WarioPrimark::check(Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3));
+		WarioPrimark::check(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024));
 		//load assets
-		AssetManager assetmanager(renderer, "Mario_staffordshire");
+		AssetManager* AM = AssetManager::get(renderer_global);
+		//create scene
+		Scene newScene( renderer_global);
+		newScene.Init();
+		
 	}
 }
 
