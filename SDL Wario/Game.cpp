@@ -2,8 +2,14 @@
 #include <Utilty.h>
 #include <TextureManager.h>
 #include <GameObject.h>
+#include <ECS.h>
+#include <Components.h>
+
 
 GameObject* Player;
+
+Manager manager;
+auto& newplayer(manager.addentity());
 
 void Game::INIT(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -20,6 +26,8 @@ void Game::INIT(const char* title, int xpos, int ypos, int width, int height, bo
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 	Player = new GameObject("Mario_staffordshire/Luigi.png", renderer, 0, 0);
+	newplayer.addcomponent<postioncomponent>();
+
 }
 
 void Game::handleevents()
@@ -40,6 +48,8 @@ void Game::handleevents()
 void Game::update()
 {
 	Player->update();
+	manager.update();
+	std::cout << newplayer.getComponent<postioncomponent>().getX() << std::endl;
 }
 
 void Game::render()
