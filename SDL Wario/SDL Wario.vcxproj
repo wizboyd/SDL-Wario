@@ -19,23 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Personal_inlcude\AssetManager.h" />
-    <ClInclude Include="Personal_inlcude\Components.h" />
-    <ClInclude Include="Personal_inlcude\DataTypes.h" />
-    <ClInclude Include="Personal_inlcude\entt.hpp" />
-    <ClInclude Include="Personal_inlcude\Game.h" />
-    <ClInclude Include="Personal_inlcude\Scene.h" />
-    <ClInclude Include="Prefab.h" />
-    <ClInclude Include="QuadWriter.h" />
-    <ClInclude Include="SDL_Checkh.h" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="Components.cpp" />
-    <ClCompile Include="DataTypes.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Personal_inlcude\Game.h" />
+    <ClInclude Include="Personal_inlcude\TextureManager.h" />
+    <ClInclude Include="Personal_inlcude\Utilty.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -1,47 +1,57 @@
 #include "Game.h"
-#include <SDL_Checkh.h>
-#include <AssetManager.h>
-#include <Scene.h>
-namespace WarioPrimark {
+#include <Utilty.h>
+#include <TextureManager.h>
+#include <GameObject.h>
 
-	Game::Game()
+GameObject* Player;
+
+void Game::INIT(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
+{
+	isrunning = true;
+	int flag = 0;
+	if (fullscreen)
 	{
-		WarioPrimark::check(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO));//will check if SDL can INTITILize if not will terminate program;
+		flag = SDL_WINDOW_FULLSCREEN;
 	}
+	check(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO));
 
-	Game::~Game() {
-		SDL_Quit();
-	}
+	window = check_SDL_Component(SDL_CreateWindow(title, xpos, ypos, width, height, flag));
+	renderer = check_SDL_Component(SDL_CreateRenderer(window, -1, 0));
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
-void Game::run(){
-		SDL_Window* window{SDL_CreateWindow(//creates a window and sets it to the varible window
-		"Wario Primark",
-			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			800,600,
-			SDL_WINDOW_SHOWN
-		) };
-		if (window == NULL)
-		{
-			WarioPrimark::raise();
-		}
+	Player = new GameObject("Mario_staffordshire/Luigi.png", renderer, 0, 0);
+}
 
-		renderer_global = {SDL_CreateRenderer(window, -1,
-			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
-			) };
-		if (renderer_global == NULL)
-		{
-			WarioPrimark::raise();
-		}
+void Game::handleevents()
+{
+	SDL_Event event;
+	SDL_PollEvent(&event);
+	switch (event.type)
+	{
+	default:
+		break;
+	case SDL_QUIT:
+		isrunning = false;
+		break;
 
-		WarioPrimark::check(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG));
-		WarioPrimark::check(Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3));
-		WarioPrimark::check(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024));
-		//load assets
-		AssetManager* AM = AssetManager::get(renderer_global);
-		//create scene
-		Scene newScene( renderer_global);
-		newScene.Init();
-		
 	}
 }
 
+void Game::update()
+{
+	Player->update();
+}
+
+void Game::render()
+{
+	SDL_RenderClear(renderer);
+	Player->render();
+	SDL_RenderPresent(renderer);
+}
+
+void Game::clean()
+{
+	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer);
+	SDL_Quit();
+}
